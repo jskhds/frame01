@@ -1,6 +1,6 @@
-数据交互 和server配合使用
+数据交互 和server  
 
-但我的server配置有点问题，注意看看
+后台用的是koa 有些插件要装一下
 
 创建好vue项目之后 安装axios
 
