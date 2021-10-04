@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        position: fixed;
+        padding-top: 10px;
+        width: 300px;
+        height: 200px;
+        margin: 20px auto;
+    }
+
+    button {
+        position: fixed;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <img src="images/001.jpg" v-show="isShow">
+        <img src="images/002.jpg" v-show="age>=18">
+        <input type="button" value="点击切换" @click="changeIsShow">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: false,
+                age: 18
+            },
+            methods: {
+                changeIsShow: function () {
+                    this.isShow = !this.isShow;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

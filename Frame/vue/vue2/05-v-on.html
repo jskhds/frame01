@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 事件绑定 -->
+    <div id="app">
+
+        <input type="button" value="v-on指令" @click="doIt">
+        <input type="button" value="v-on指令数据" @click="changeFood">
+        <p> {{food}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // 事件绑定
+        var app = new Vue({
+            el: "#app",
+            data: {
+                food: "清炒西红柿"
+
+            },
+            methods: {
+                doIt: function () {
+                    alert("doit")
+                },
+                changeFood: function () {
+                    // 记得要用this拿到
+                    this.food += "黑暗料理！"
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

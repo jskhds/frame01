@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <h3 v-text="message + '.'">古诗</h3>
+        <h3 v-text="text">古诗</h3>
+        <!-- 如果要部分替换，采用下面这种  -->
+        <h3>{{saying + '!'}}古诗</h3>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "空山新雨后 天气晚来秋",
+                text: '停车坐爱枫林晚 霜叶红于二月花',
+                saying: "当一天和尚撞一天钟"
+
+            }
+        })
+    </script>
+</body>
+
+</html>

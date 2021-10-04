@@ -1,0 +1,146 @@
+body,
+ul,
+dl,
+dd{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.wrap{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(images/music/center_background01.jpg) no-repeat;
+   /* 这一句让本来小的图片占满整个屏幕 */
+    background-size: 100% 100%;
+}
+
+.play_wrap{
+    position: fixed;
+    left: 15%;
+    top:10%;
+    width: 900px;
+    height: 600px;
+    background: url(images/music/center_background.jpg) no-repeat;
+    background-size: 95% 95%;
+}
+.header{
+    position: fixed;
+    top: 3px;
+    width: 100%;
+    height: 60px;
+  
+    background-color: #ff6768;
+}
+.search_bar {
+    /* 这个宽度不是很懂为什么不和父级盒子一样宽 */
+    width: 856px;
+    height: 40px;
+    position: relative;
+    background-color: #ff6768;
+    border-radius: 4px;
+    display: flex;
+    /* ？ */
+    align-items: center;
+    justify-content: space-between;
+    z-index: 11;
+}
+
+.search_bar input{
+    margin-left: 650px;
+    height: 20px;
+    outline: none;
+    text-indent: 10px;
+    border-radius: 4px;
+    border: none;
+}
+
+.search_bar button{
+    background-color: #ea7070; /* Green */
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.center_con{
+    height: 450px;
+    width: 855px;
+    border: 1px solid #414141;
+}
+
+.song_list {
+    float: left;
+    width: 280px;
+    height: 450px;
+    border: 1px solid #414141;
+}
+.song_list li {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ff6768;
+}
+.song_list li a {
+    display: block;
+    width: 27px;
+    height: 27px;
+    background-image: url(images/music/play.png);
+    /* 虽然我导入了图片 但是没有给图片尺寸 图片也不能显示？ */
+    background-size: 100%;
+    margin-top: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+}
+.song_list li b{
+    width: 200px;
+    height: 27px;
+   margin-right: 10px;
+    margin-top: 5px;
+    border: solid 2px #ff6768;
+}
+
+.song_list li i{
+    display: block;
+   width: 27px;
+   height: 27px;
+   margin-top: 5px;
+   background: url(images/music/MV.png) no-repeat;
+   background-size: 100%;
+
+}
+.musicCover{
+    float: left;
+    width: 280px;
+    height: 450px;
+    border: 1px solid #414141;
+}
+.musicCover .player_bar{
+    position: absolute;
+   margin-left: 15%;
+    z-index: 8;
+}
+.musicCover .disc{
+    margin-left: 15px;
+    margin-top: 20%;
+}
+.comment {
+    float: left;
+    width: 280px;
+    height: 450px;
+    border: 1px solid #414141;
+}
+
+.audio_con {
+    margin-top: 15px;
+    width: 855px;
+    height: 60px;
+   background-color: #fff;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}

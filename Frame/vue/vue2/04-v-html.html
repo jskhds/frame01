@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-html="message"></p>
+        <p v-text="message"></p>
+        <!-- v-html 可以解析html标签 v-text指令解析文本-->
+        <p v-html="content"></p>
+        <p v-text="content"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // 最外层是" 里层就必须是 ''
+                message: "jnu",
+                content: "<a href='http://www.baidu.com'>jnu</a>"
+            }
+        })
+
+    </script>
+</body>
+
+</html>

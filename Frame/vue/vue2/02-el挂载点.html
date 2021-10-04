@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <!-- 后面不加分号 -->
+        {{message}}
+        <h2>
+            {{school.name}}
+        </h2>
+        <h3>
+            {{campus[0]}}
+        </h3>
+    </div>
+    <script>
+        var app = new Vue({
+            // 首先选择出来元素
+            el: "#app",
+            // Vue中定义的数据，包括复杂类型的数据 都写在data里 
+            data: {
+                message: "hello world",
+                school: {
+                    name: 'jnu',
+                    num: '200-100-300'
+                },
+                campus: ['广州', '珠海', '深圳']
+            }
+        })
+    </script>
+</body>
+
+</html>

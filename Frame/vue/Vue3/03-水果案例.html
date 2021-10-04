@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水果列表</title>
+</head>
+<body>
+
+    <div id="app">
+        <form @submit.prevent="insert">          
+            <input v-model="name">
+            <input v-model.number="price">
+            <input type="text" v-model.number="number">
+            <button>添加项目</button>
+        </form>
+            <ul>
+                <li v-for="item,index in list">
+                    {{item.name}}
+                    {{item.price}}
+                    <button @click="min(index)">-</button>
+                         <span> {{item.number}}</span>
+                    <button @click="add(index)">+</button>
+                </li>
+            </ul>
+            totalPrice:{{totalPrice}}
+       
+       
+    </div>
+<script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+    Vue.createApp({
+        data(){
+            return {
+                name:"",
+                price:0,
+                number:1,
+                list:[]
+            }},
+        computed:{
+            totalPrice(){
+                let sum = 0;
+              this.list.forEach(v => {
+                  sum += v.price*v.number;
+              });
+              return sum;
+            }
+           
+        },
+        methods:{
+            insert(){
+               this.list.push({
+                   name:this.name,
+                   price:this.price,
+                   number:this.number
+               })
+            },
+            add(index) {
+                this.list[index].number++;
+            },
+            min(index) {
+                if(this.list[index].number>0){
+                    this.list[index].number--;
+                }
+              
+            }
+
+        }
+
+}).mount("#app")
+    </script>
+</body>
+</html>

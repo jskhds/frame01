@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="mucic.css">
+
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">header 待添加</div>
+        <div class="play_wrap" id="player">
+
+            <div class="search_bar">
+                <input type="text" class="search_input" v-model='query' @keyup.enter="searchMusic();">
+                <button @click="searchMusic()">搜索</button>
+            </div>
+            <!-- 歌曲中心部分 -->
+            <div class="center_con">
+                <!-- 歌曲搜索结果部分 -->
+                <div class="song_wrapper">
+                    <ul class="song_list">
+                        <li v-for="item in musicList">
+                            <a href="javascript:;" @click='playMusic(item.id)'> </a>
+                            <b>{{item.name}}</b>
+                            <span><i @click="playMv(item.mvid)" v-if="item.mvid!=0"></i></span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 歌曲封面部分 -->
+                <div class="musicCover">
+                    <img src="images/music/player_bar.png" class="player_bar">
+                    <img src="images/music/disc.png" class="disc">
+
+                    <!-- 这张是歌曲的专辑封面 动态生成 -->
+                    <img src="" class="disc_cover">
+                </div>
+                <!-- 歌曲留言部分 -->
+                <div class="comment">
+                    <h3>评论区</h3>
+                    <div class="comment_list">
+                        <dl>
+                            <dt class="avatar">
+                                <img src="" alt="">
+                            </dt>
+                            <dd class="nickname"></dd>
+                            <dd class="detail"></dd>
+                        </dl>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 歌曲播放栏 -->
+            <div class="audio_con">
+                <audio src=""></audio>
+            </div>
+            <!-- MV播放 -->
+            <div class="video_wrap">
+                <video src=""></video>
+                <div class="mask"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        axios.defaults.baseURL = 'https://autumnfish.cn';
+        var app = new Vue({
+            el: "#player",
+            data: {
+                // 搜索关键字
+                query: '',
+                musicList: [],
+                musicUrl: ''
+
+
+            },
+            methods: {
+                searchMusic() {
+                    if (this.query == 0) {
+                        return;
+                    }
+                    axios.get('/search?keywords=' + this.query).then(response => {
+                        // 保存内容
+                        this.musicList = response.data.result.songs;
+
+                    })
+
+                },
+                playMusic(musicId) {
+                    axios.get('/song/url?id=' + musicId).then(response => {
+                        this.musicUrl = response.data.data[0].url;
+                    })
+
+                },
+                playMv(vid) {
+                    if (vid) {
+                        this.showVideo = true;
+                        axios.get('/mv/url?id=' + vid).then(response => {
+                            this.$refs.audio.pause();
+                            this.mvUrl = response.data.data.url;
+                        })
+                    }
+
+
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

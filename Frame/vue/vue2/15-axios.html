@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios+vue</title>
+</head>
+
+<body>
+
+    <!--  
+        1.axios必须先导入才可以使用
+        2.使用get或者post方法即可发送相对应的请求
+        3.then中的回调函数会在请求成功或者失败时触发
+        4.通过回调函数的形参可以获取相应内容，或发送错误信息-->
+
+    <!-- axios+vue 
+    1.axios回调函数中this已经改变 无法访问到data中的数据
+    2.把this保存起来，回调函数中直接使用保存的this即可
+    3.和本地应用最大的区别就是改变了数据来源 -->
+    <div id="app">
+        <button class="get" @click="getJoke">get请求</button>
+        <p>{{joke}}</p>
+    </div>
+
+    <button class="post">post请求</button>
+    <!-- 导入axios -->
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // axios get post 请求语法
+        // axios.get(url?key=value1&key=value2).then(function(response){},function(err){})
+        // axios.post(url,{key:value,key:value2}).then(function(response){},function(err){})
+        document.querySelector(".post").onclick = function () {
+            axios.post("https://autumnfish.cn/api/user/reg", { username: "saySomething" }).then(function (response) {
+                console.log(response);
+            },
+                function (err) {
+                    console.log(err);
+
+                })
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                joke: "点击获取笑话"
+            },
+            methods: {
+                getJoke: function () {
+                    // 第一层的this 和 axios.get里的this是两个对象，所以需要
+                    // 把第一个this用别的变量存起来 这样之后才好赋值
+                    // console.log(this.joke);
+                    var that = this;
+                    axios.get("https://autumnfish.cn/api/joke/list?num=6")
+                        .then(function (response) {
+                            // console.log(response);
+                            // console.log(response.data);
+                            that.joke = response.data.jokes;
+                        }, function (err) {
+                            console.log(err);
+                        })
+
+
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        float: left;
+
+    }
+
+    p {
+        position: relative;
+        left: -120px;
+        top: 30px;
+        margin-bottom: 10px;
+    }
+
+    img {
+        margin: 10px 10px;
+        width: 200px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <button @click="toggleIsShow">切换展示</button>
+        <button @click="ageAdd">增加年龄</button>
+        <!-- v-show 切换style中的display  -->
+        <!-- v-if 直接操控dom元素-->
+        <p v-show="isShow">图片展示</p>
+        <img src="images/001.jpg" v-if="isShow">
+        <img src="images/002.jpg" v-if="age>=20">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: false,
+                age: 17
+            },
+            methods: {
+                toggleIsShow: function () {
+                    this.isShow = !this.isShow;
+                },
+                ageAdd: function () {
+                    this.age++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for指令 根据数据生成列表结构</title>
+</head>
+<style>
+    li {
+        list-style: none;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <button @click="add">添加数据</button>
+        <button @click="remove">移除数据</button>
+        <ul>
+            <!-- in 是关键字不可以更改 item可以改 这里我改成了color -->
+            <!-- v-for="(itemr,index) in 数组" -->
+            <li v-for="(color,index) in arr">
+                {{index+1}} 颜色：{{color}}
+            </li>
+        </ul>
+        <h2 v-for="item in arr1">
+            {{item.name}}
+        </h2>
+    </div>
+
+
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                arr: [
+                    "red", "orange", "yellow", "green"
+                ],
+                arr1: [
+                    { name: "北京" },
+                    { name: "上海" },
+                    { name: "天津" },
+                    { name: "河北" },
+
+                ]
+            },
+            methods: {
+                add: function () {
+                    // 如果说添加的是对象中的数据 装数据的符号是不一样的
+                    //  this.arr1.push({河南});
+                    this.arr.push("blue");
+                },
+                remove: function () {
+                    this.arr.shift();
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>
